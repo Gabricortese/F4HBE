@@ -8,4 +8,8 @@ spring:
         - id: userService
           uri: http://localhost:8080/
           predicates:
-            - Path=/api/v1/**
+            - Path=/api/user/**
+        - id: boxService
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/api/boxms/**
