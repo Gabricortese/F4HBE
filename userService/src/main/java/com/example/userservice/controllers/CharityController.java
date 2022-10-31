@@ -12,19 +12,19 @@ import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/user")
 public class CharityController {
 
     @Autowired
     CharityCompanyRepository repository;
 
-    @PostMapping(value = "/user/charity/create")
+    @PostMapping(value = "/charity/create")
     public CharityCompany postCharity(@RequestBody CharityCompany charity) {
         CharityCompany _charity = repository.save(new CharityCompany(charity.getID(),charity.getCompanyName(),charity.getCEO_name(),charity.getAddress(), charity.getPhone_number(), charity.getUsername(),charity.getPassword()));
         return _charity;
     }
 
-    @GetMapping("/user/charity")
+    @GetMapping("charities")
     public List<CharityCompany> getAllCharity() {
         System.out.println("Get all Charity activities...");
 
@@ -34,7 +34,7 @@ public class CharityController {
         return charities;
     }
 
-    @DeleteMapping("/user/charity/delete/{id}")
+    @DeleteMapping("/charity/delete/{id}")
     public ResponseEntity<String> deleteCharity(@PathVariable("id") long id) {
         System.out.println("Delete Charity with ID = " + id + "...");
 
@@ -43,14 +43,14 @@ public class CharityController {
         return new ResponseEntity<>("Charity has been deleted!", HttpStatus.OK);
     }
 
-    @GetMapping(value = "user/charity/name/{name}")
+    @GetMapping(value = "/charity/name/{name}")
     public List<CharityCompany> findByCompanyName(@PathVariable String name) {
 
         List<CharityCompany> charities = repository.findByCompanyName(name);
         return charities;
     }
 
-    @GetMapping(value = "user/charity/login/{userpwd}")
+    @GetMapping(value = "/charity/login/{userpwd}")
     public CharityCompany loginCharity(@PathVariable String userpwd) {
 
         if(!userpwd.contains("_"))
