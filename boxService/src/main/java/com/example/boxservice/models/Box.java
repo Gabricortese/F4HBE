@@ -13,7 +13,7 @@ public class Box {
     private String description;
 
     @Column(name = "weight")
-    private int weight;
+    private String weight;
 
     @Column(name = "available")
     private boolean available;
@@ -21,12 +21,16 @@ public class Box {
     @Column(name = "owner")
     private String owner;
 
-    public Box(long id, String description, int weight, boolean available, String owner) {
+    @Column(name = "type")
+    private String type;
+
+    public Box(long id, String description, String weight, boolean available, String owner, String type) {
         this.id = id;
         this.description = description;
         this.weight = weight;
         this.available = available;
         this.owner = owner;
+        this.type = type;
     }
 
     public Box(){}
@@ -47,11 +51,11 @@ public class Box {
         this.description = description;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
@@ -69,5 +73,13 @@ public class Box {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
