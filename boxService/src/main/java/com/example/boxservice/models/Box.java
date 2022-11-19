@@ -24,13 +24,21 @@ public class Box {
     @Column(name = "type")
     private String type;
 
-    public Box(long id, String description, String weight, boolean available, String owner, String type) {
+    @Column(name = "mail")
+    private String mail;
+
+    @Column(name = "tel")
+    private int tel;
+
+    public Box(long id, String description, String weight, boolean available, String owner, String type, String mail, int tel) {
         this.id = id;
         this.description = description;
         this.weight = weight;
         this.available = available;
         this.owner = owner;
         this.type = type;
+        this.mail = mail;
+        this.tel = tel;
     }
 
     public Box(){}
@@ -81,5 +89,21 @@ public class Box {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public int getTel() {
+        return tel;
+    }
+
+    public void setTel(int tel) {
+        this.tel = tel;
     }
 }

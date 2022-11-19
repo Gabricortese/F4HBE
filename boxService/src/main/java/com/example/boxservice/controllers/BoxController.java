@@ -21,7 +21,7 @@ public class BoxController {
     @PostMapping(value = "create")
     public Box postCharity(@RequestBody Box box) {
         System.out.println(box.getDescription());
-        Box _box = repository.save(new Box(box.getId(),box.getDescription(),box.getWeight(),box.isAvailable(), box.getOwner(), box.getType()));
+        Box _box = repository.save(new Box(box.getId(),box.getDescription(),box.getWeight(),box.isAvailable(), box.getOwner(), box.getType(), box.getMail(), box.getTel()));
         return _box;
     }
 
