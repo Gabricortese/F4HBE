@@ -10,7 +10,6 @@ public class User {
     private long id;
     @Column(name = "companyName")
     private String companyName;
-
     @Column(name = "ceo_name")
     private String ceo_name;
     @Column(name = "address")
@@ -22,7 +21,10 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public User(long id, String companyName, String ceo_name, String address, int phone_number, String username, String password) {
+    @Column(name = "clientid")
+    private String clientid;
+
+    public User(long id, String companyName, String ceo_name, String address, int phone_number, String username, String password, String clientid) {
         this.id = id;
         this.companyName = companyName;
         this.ceo_name = ceo_name;
@@ -30,6 +32,7 @@ public class User {
         this.phone_number = phone_number;
         this.username = username;
         this.password = password;
+        this.clientid = clientid;
     }
 
     public User() {
@@ -89,5 +92,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getClientid() {
+        return clientid;
+    }
+
+    public void setClientid(String clientid) {
+        this.clientid = clientid;
     }
 }

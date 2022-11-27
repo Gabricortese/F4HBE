@@ -20,7 +20,7 @@ public class CharityController {
 
     @PostMapping(value = "/charity/create")
     public CharityCompany postCharity(@RequestBody CharityCompany charity) {
-        CharityCompany _charity = repository.save(new CharityCompany(charity.getID(),charity.getCompanyName(),charity.getCEO_name(),charity.getAddress(), charity.getPhone_number(), charity.getUsername(),charity.getPassword()));
+        CharityCompany _charity = repository.save(new CharityCompany(charity.getID(),charity.getCompanyName(),charity.getCEO_name(),charity.getAddress(), charity.getPhone_number(), charity.getUsername(),charity.getPassword(),charity.getClientid()));
         return _charity;
     }
 
@@ -81,8 +81,29 @@ public class CharityController {
             return null;
     }
 
-    /*
-    * TODO: login con input: String username_password
-    *  Sarebbe una ricerca delle charity by username + controllo della password
-    * */
+    @GetMapping(value = "/charity/login/google/{clientid}")
+    public CharityCompany loginGoogle(@PathVariable String clientid) {
+
+        List<CharityCompany> charities = new ArrayList<>();
+        repository.findAll().forEach(charities::add);
+
+        boolean exists = false;
+        CharityCompany current_user = null;
+
+
+        for (CharityCompany ch : charities) {
+            if(ch.getClientid().equals(clientid)){
+                exists = true;
+                current_user = ch;
+                break;
+            }
+        }
+
+        if(exists)
+            return current_user;
+        else
+            return null;
+    }
+
+
 }

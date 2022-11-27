@@ -1,5 +1,6 @@
 package com.example.userservice.controllers;
 
+import com.example.userservice.models.CharityCompany;
 import com.example.userservice.models.WorkingActivity;
 import com.example.userservice.repositories.WorkingActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class WorkingActivityController {
 
     @PostMapping(value = "/workingactivity/create")
     public WorkingActivity postWorkingActivity(@RequestBody WorkingActivity wactivity) {
-        WorkingActivity _wactivity = repository.save(new WorkingActivity(wactivity.getID(),wactivity.getCompanyName(),wactivity.getCEO_name(),wactivity.getAddress(), wactivity.getPhone_number(), wactivity.getUsername(),wactivity.getPassword()));
+        WorkingActivity _wactivity = repository.save(new WorkingActivity(wactivity.getID(),wactivity.getCompanyName(),wactivity.getCEO_name(),wactivity.getAddress(), wactivity.getPhone_number(), wactivity.getUsername(),wactivity.getPassword(), wactivity.getClientid()));
         return _wactivity;
     }
 
@@ -71,6 +72,30 @@ public class WorkingActivityController {
                 current_user = wa;
                 if(!wa.getPassword().equals(password))
                     exists = false;
+                break;
+            }
+        }
+
+        if(exists)
+            return current_user;
+        else
+            return null;
+    }
+
+    @GetMapping(value = "/workingactivity/login/google/{clientid}")
+    public WorkingActivity loginGoogle(@PathVariable String clientid) {
+
+        List<WorkingActivity> wactivities = new ArrayList<>();
+        repository.findAll().forEach(wactivities::add);
+
+        boolean exists = false;
+        WorkingActivity current_user = null;
+
+
+        for (WorkingActivity wa : wactivities) {
+            if(wa.getClientid().equals(clientid)){
+                exists = true;
+                current_user = wa;
                 break;
             }
         }
