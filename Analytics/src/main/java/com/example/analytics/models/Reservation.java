@@ -1,4 +1,4 @@
-package com.example.reservationservice.models;
+package com.example.analytics.models;
 
 import javax.persistence.*;
 
@@ -57,10 +57,5 @@ public class Reservation {
 
     public void setIdBox(String idBox) {
         this.idBox = idBox;
-    }
-
-    @Override
-    public String toString() {
-        return this.getId() + "-" + this.getWorkingact() + "-" + this.getCharityact() + "-" + this.getIdBox();
     }
 }

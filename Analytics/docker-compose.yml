@@ -13,10 +13,10 @@ services:
       - msgrabbit
   app:
     build: .
-    image: appres
-    container_name: appres
+    image: appan
+    container_name: appan
     ports:
-      - "8083:8080"
+      - "8095:8080"
     depends_on:
       - dbpostgresql
     networks:
