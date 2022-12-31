@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:19006")
 @RestController
 @RequestMapping("/api/boxms/")
 public class BoxController {
